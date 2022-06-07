@@ -1,7 +1,10 @@
 Coverage: 34%
-# Project Title
 
-One Paragraph of project description goes here
+Inventory Management System (IMS)
+
+Creating an Inventory Management System that a user can interact with provides the oppertunity to apply concepts from all of our core training modules. Using the information taught from QA,  it is possible to create, read, update and 
+delete from our customers, items, orders and order items tables. While, also using a version control system (Git) to ensure the code is integrated, scrum board (Jira) to ensure efficient time management, and a source code managent (GitHub).
+
 
 ## Getting Started
 
@@ -70,7 +73,7 @@ Add additional notes about how to deploy this on a live system
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning.
+We use [GitHub](??????????http://semver.org/?????????????) for versioning.
 
 ## Authors
 
