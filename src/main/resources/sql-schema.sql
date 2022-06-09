@@ -27,13 +27,13 @@ CREATE TABLE IF NOT EXISTS `ims`.`orders` (
 );
 
    CREATE TABLE IF NOT EXISTS `ims`.`orders_items` (
-      order_itemsID INT(11) NOT NULL AUTO_INCREMENT,
+      orderitems_id INT(11) NOT NULL AUTO_INCREMENT,
       fk_order_id INT NOT NULL,
       fk_items_id INT NOT NULL, 
       item_quantity INT(50) NOT NULL,
       order_cost DEC(10, 2) NOT NULL,
 	      
-      PRIMARY KEY (order_itemsID),
+      PRIMARY KEY (orderitems_id),
       FOREIGN KEY (fk_order_id) REFERENCES orders(order_id),
       FOREIGN KEY (fk_items_id) REFERENCES items(items_id)
 );
