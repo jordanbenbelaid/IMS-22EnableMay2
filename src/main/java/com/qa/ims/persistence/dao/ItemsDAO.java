@@ -11,7 +11,6 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.qa.ims.persistence.domain.Customer;
 import com.qa.ims.persistence.domain.Items;
 import com.qa.ims.utils.DBUtils;
 
@@ -37,9 +36,9 @@ public class ItemsDAO implements Dao<Items> {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery("SELECT * FROM items");) {
-			List<Items> customers = new ArrayList<>();
+			List<Items> items = new ArrayList<>();
 			while (resultSet.next()) {
-				Items.add(modelFromResultSet(resultSet));
+				items.add(modelFromResultSet(resultSet));
 			}
 			return items;
 		} catch (SQLException e) {
@@ -73,7 +72,7 @@ public class ItemsDAO implements Dao<Items> {
 				PreparedStatement statement = connection
 						.prepareStatement("INSERT INTO Items(ItemsName, price) VALUES (?, ?)");) {
 			statement.setString(1, items.getItemsName());
-			statement.setString(2, items.getPrice());
+			statement.setInt(2, items.getPrice());
 			statement.executeUpdate();
 			return readLatest();
 		} catch (Exception e) {
@@ -111,7 +110,7 @@ public class ItemsDAO implements Dao<Items> {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
 						.prepareStatement("UPDATE items SET itemsName = ?, Price = ? WHERE id = ?");) {
-			statement.setString(1, items.getItems_Name());
+			statement.setString(1, items.getItemsName());
 			statement.setInt(2, items.getPrice());
 			statement.setLong(3, items.getId());
 			statement.executeUpdate();

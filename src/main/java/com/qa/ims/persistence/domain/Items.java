@@ -1,7 +1,6 @@
 package com.qa.ims.persistence.domain;
 
-import com.qa.ims.controller.Action;
-import com.qa.ims.controller.CrudController;
+import java.util.Objects;
 
 public class Items {
 //Attributes
@@ -19,7 +18,7 @@ public class Items {
 		this.setItemsName(itemsName);
 		this.setPrice(price);
 	}
-	//getters and setters for price
+	//getters and setters
 	public Long getId() {
 		return id;
 	}
@@ -47,16 +46,11 @@ public class Items {
 	@Override
 	public String toString() {
 		return "id:" + id + " items name:" + itemsName + " price:" + price;
-	}	
-	
+	}
+
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((itemsName == null) ? 0 : itemsName.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((price == null) ? 0 : price.hashCode());
-		return result;
+		return Objects.hash(id, itemsName, price);
 	}
 
 	@Override
@@ -68,48 +62,11 @@ public class Items {
 		if (getClass() != obj.getClass())
 			return false;
 		Items other = (Items) obj;
-		if (getItemsName() == null) {
-			if (other.getItemsName() != null)
-				return false;
-		} else if (!getItemsName().equals(other.getItemsName()))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (price == null) {
-			if (other.price != null)
-				return false;
-		} else if (!price.equals(other.price))
-			return false;
-		return true;
+		return Objects.equals(id, other.id) && Objects.equals(itemsName, other.itemsName) && price == other.price;
 	}
 
-	public static void add(Items modelFromResultSet) {
-		// TODO Auto-generated method stub
-		
-	}
-	public void doAction(CrudController<?> crudController, Action action) {
-		switch (action) {
-		case CREATE:
-			crudController.create();
-			break;
-		case READ:
-			crudController.readAll();
-			break;
-		case UPDATE:
-			crudController.update();
-			break;
-		case DELETE:
-			crudController.delete();
-			break;
-		case RETURN:
-			break;
-		default:
-			break;
-		}
-	}
+	
+	
 	
 
 }
