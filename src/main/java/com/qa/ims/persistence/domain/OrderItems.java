@@ -7,22 +7,23 @@ public class OrderItems {
 	private Long orderItemsId;
 	private Long fkItemsId;
 	private Long fkOrderId;
-	private int itemQuantity; 
-	private double orderCost;
+	private Long itemQuantity; 
+//	private double orderCost;
 	
-	public OrderItems(Long fkitemsId, Long fkorderId, int itemQuantity, double orderCost) {
+	public OrderItems(Long fkitemsId, Long fkorderId, Long itemQuantity) {
 		this.setFkItemsId(fkitemsId);
 		this.setFkOrderId(fkorderId);
 		this.setItemQuantity(itemQuantity);
-		this.setOrderCost(orderCost);
+//		this.setOrderCost(orderCost);
 	}
 
-	public OrderItems(Long orderItemsId, Long fkitemsId, Long fkorderId, int itemQuantity, double orderCost ) {
+	public OrderItems(Long orderItemsId, Long fkitemsId, Long fkorderId, Long itemQuantity ) {
 		this.setOrderItemsId(orderItemsId);
 		this.setFkItemsId(fkitemsId);
 		this.setFkOrderId(fkorderId);
 		this.setItemQuantity(itemQuantity);
-		this.setOrderCost(orderCost);		
+//		this.setOrderCost(orderCost);		
+	
 	}
 
 	public Long getOrderItemsId() {
@@ -49,36 +50,23 @@ public class OrderItems {
 		this.fkOrderId = fkOrderId;
 	}
 
-	public int getItemQuantity() {
+	public Long getItemQuantity() {
 		return itemQuantity;
 	}
 
-	public void setItemQuantity(int itemQuantity) {
+	public void setItemQuantity(Long itemQuantity) {
 		this.itemQuantity = itemQuantity;
 	}
 
-	public double getOrderCost() {
-		return orderCost;
-	}
-
-	public void setOrderCost(double orderCost) {
-		this.orderCost = orderCost;
-	}
-
-//	public double orderCost() {
-//		double orderCost = getItemQuantity() * Item.getPrice();
-//		return orderCost;
-//		
-//	}
 	@Override
 	public String toString() {
 		return "OrderItems [orderItemsId=" + orderItemsId + ", fkItemsId=" + fkItemsId + ", fkOrderId=" + fkOrderId
-				+ ", itemQuantity=" + itemQuantity + ", orderCost=" + orderCost + "]";
+				+ ", itemQuantity=" + itemQuantity + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(fkItemsId, fkOrderId, itemQuantity, orderCost, orderItemsId);
+		return Objects.hash(fkItemsId, fkOrderId, itemQuantity, orderItemsId);
 	}
 
 	@Override
@@ -91,10 +79,22 @@ public class OrderItems {
 			return false;
 		OrderItems other = (OrderItems) obj;
 		return Objects.equals(fkItemsId, other.fkItemsId) && Objects.equals(fkOrderId, other.fkOrderId)
-				&& itemQuantity == other.itemQuantity
-				&& Double.doubleToLongBits(orderCost) == Double.doubleToLongBits(other.orderCost)
-				&& Objects.equals(orderItemsId, other.orderItemsId);
+				&& Objects.equals(itemQuantity, other.itemQuantity) && Objects.equals(orderItemsId, other.orderItemsId);
 	}
-	
 }
+//	public double getOrderCost() {
+//		return orderCost;
+//	}
+//
+//	public void setOrderCost(double orderCost) {
+//		this.orderCost = orderCost;
+//	}
+	
+//	public double orderCost() {
+//	Item item = new Item();
+	
+//	double orderCost = getItemQuantity() * Item.getPrice();
+//	return orderCost;
+//	
+//}
 	
