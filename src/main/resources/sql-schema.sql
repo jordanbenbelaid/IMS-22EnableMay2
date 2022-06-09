@@ -20,10 +20,10 @@ CREATE TABLE IF NOT EXISTS `ims`.`items` (
 );
 
 CREATE TABLE IF NOT EXISTS `ims`.`orders` (
-      order_id INT(11) NOT NULL AUTO_INCREMENT,
       fk_id INT NOT NULL,
+      order_id INT(11) NOT NULL AUTO_INCREMENT,
       PRIMARY KEY (order_id, fk_id),
-      FOREIGN KEY (fk_id) REFERENCES customers(id)
+      FOREIGN KEY (fk_id) REFERENCES customers(id) ON DELETE CASCADE
 );
 
    CREATE TABLE IF NOT EXISTS `ims`.`orders_items` (
@@ -31,9 +31,9 @@ CREATE TABLE IF NOT EXISTS `ims`.`orders` (
       fk_order_id INT NOT NULL,
       fk_items_id INT NOT NULL, 
       item_quantity INT(50) NOT NULL,
-      order_cost DEC(10, 2) NOT NULL,
+
 	      
       PRIMARY KEY (orderitems_id),
-      FOREIGN KEY (fk_order_id) REFERENCES orders(order_id),
-      FOREIGN KEY (fk_items_id) REFERENCES items(items_id)
+      FOREIGN KEY (fk_order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
+      FOREIGN KEY (fk_items_id) REFERENCES items(items_id) ON DELETE CASCADE
 );

@@ -18,20 +18,20 @@ import com.qa.ims.utils.DBUtils;
 public class OrderDAO implements Dao<Order>{  
 
 	public static final Logger LOGGER = LogManager.getLogger();
-	
+
 	@Override
 	public Order modelFromResultSet(ResultSet resultSet) throws SQLException {
 		Long orderId = resultSet.getLong("order_id");
 		Long fkId = resultSet.getLong("fk_id");
 		return new Order(orderId, fkId);
 	}
-	
+
 	/**
 	 * Reads all orders from the database
 	 * 
 	 * @return A list of orders
 	 */
-	
+
 	@Override
 		public List<Order> readAll() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
@@ -62,13 +62,13 @@ public class OrderDAO implements Dao<Order>{
 			}
 		return null;
 		}
-	
+
 	/**
 	 * Creates an order in the database
 	 * 
 	 * @param order - takes in a order object. id will be ignored
 	 */
-	
+
 	@Override
 	public Order create(Order order) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
@@ -82,7 +82,7 @@ public class OrderDAO implements Dao<Order>{
 		}
 		return null;
 	}
-	
+
 	@Override
 	public Order read(Long orderId) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
@@ -98,7 +98,7 @@ public class OrderDAO implements Dao<Order>{
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Updates an order in the database
 	 * 
@@ -106,7 +106,7 @@ public class OrderDAO implements Dao<Order>{
 	 *                 update that order in the database
 	 * @return
 	 */
-	
+
 	@Override
 	public Order update(Order order) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
@@ -122,13 +122,13 @@ public class OrderDAO implements Dao<Order>{
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Deletes an order in the database
 	 * 
 	 * @param order_id - id of the items
 	 */
-	
+
 	@Override
 	public int delete(long orderId) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
@@ -141,5 +141,4 @@ public class OrderDAO implements Dao<Order>{
 		}
 		return 0;
 	}
-}
-	
+}	
