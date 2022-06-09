@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `ims`.`orders` (
       FOREIGN KEY (fk_id) REFERENCES customers(id) ON DELETE CASCADE
 );
 
-   CREATE TABLE IF NOT EXISTS `ims`.`orders_items` (
+ CREATE TABLE IF NOT EXISTS `ims`.`orders_items` (
       orderitems_id INT(11) NOT NULL AUTO_INCREMENT,
       fk_order_id INT NOT NULL,
       fk_items_id INT NOT NULL, 
