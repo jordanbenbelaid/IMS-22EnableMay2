@@ -11,16 +11,15 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.qa.ims.persistence.domain.Order;
+
 import com.qa.ims.persistence.domain.OrderItems;
 import com.qa.ims.utils.DBUtils;
-
 public class OrderItemsDAO implements Dao<OrderItems> { 
 
 	public static final Logger LOGGER = LogManager.getLogger();
 	
 	/**
-	 * Reads all order items from the database
+	 * Reads all order Order items from the database
 	 */
 
 	@Override
@@ -28,11 +27,15 @@ public class OrderItemsDAO implements Dao<OrderItems> {
 		Long orderItemsId = resultSet.getLong("orderitems_Id");
 		Long fkItemsId = resultSet.getLong("fk_items_id");
 		Long fkOrderId = resultSet.getLong("fk_order_id");
-		int itemQuantity = resultSet.getInt("item_quantity");
-		double orderCost = resultSet.getDouble("order_cost");
-		return new OrderItems(orderItemsId, fkItemsId, fkOrderId, itemQuantity, orderCost );
+		Long itemQuantity = resultSet.getLong("item_quantity");
+//		double orderCost = resultSet.getDouble("order_cost");
+		return new OrderItems(orderItemsId, fkItemsId, fkOrderId, itemQuantity);
 		
 	}
+	
+	/**
+	 * Reads all Order items from the database
+	 */
 	@Override
 	public List<OrderItems> readAll() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
@@ -47,10 +50,9 @@ public class OrderItemsDAO implements Dao<OrderItems> {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
-		return new ArrayList<>();
+		return new ArrayList<>();	
 	}
-
-
+	
 	public OrderItems readLatest() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
@@ -61,20 +63,22 @@ public class OrderItemsDAO implements Dao<OrderItems> {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
-	return null;
+		return null;
 	}
 	/**
-	 * Creates an order items in the database
-	 * 
+	 * Creates an order item in the database
+	
 	 */
+	
 	@Override
 	public OrderItems create(OrderItems orderItems) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
-				PreparedStatement statement = connection.prepareStatement("INSERT INTO orders_items(fk_items_id, fk_order_id, item_quantity, order_cost) VALUE (?)");) {
+				PreparedStatement statement = connection
+						.prepareStatement("INSERT INTO orders_items(fk_order_id, fk_items_id, item_quantity) VALUES (?, ?, ?)");) {
 			statement.setLong(1, orderItems.getFkItemsId());
 			statement.setLong(2, orderItems.getFkOrderId());
-			statement.setInt(3, orderItems.getItemQuantity());
-			statement.setDouble(4, orderItems.getOrderCost());
+			statement.setLong(3, orderItems.getItemQuantity());
+//			statement.setDouble(4, orderItems.getOrderCost());
 			statement.executeUpdate();
 			return readLatest();
 		} catch (Exception e) {
@@ -83,7 +87,6 @@ public class OrderItemsDAO implements Dao<OrderItems> {
 		}
 		return null;
 	}
-
 	@Override
 	public OrderItems read(Long orderItemsId) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
@@ -99,7 +102,49 @@ public class OrderItemsDAO implements Dao<OrderItems> {
 		}
 		return null;
 	}
-	
 
-}
+	/**
+	 * Updates an item in the database
+	 * 
+	 */
+	
+	@Override
+	public OrderItems update(OrderItems orderItems) {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection
+						.prepareStatement("UPDATE orders_items SET fk_order_ide = ?, fk_items_id = ?, item_quantity = ?  WHERE orderitems_id = ?");) {
+			statement.setLong(1, orderItems.getFkItemsId());
+			statement.setLong(2, orderItems.getFkOrderId());
+			statement.setLong(3, orderItems.getItemQuantity());
+//			statement.setDouble(4, orderItems.getOrderCost());
+			statement.executeUpdate();
+			return read(orderItems.getOrderItemsId());
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		return null;
+	}
+		/**
+		 * Deletes an item in the database
+		 * 
+		 * @param item_id - id of the items
+		 */
+		
+		@Override
+		public int delete(long orderItemsId) {
+			try (Connection connection = DBUtils.getInstance().getConnection();
+					PreparedStatement statement = connection.prepareStatement("DELETE FROM orders_items WHERE orderitems_id = ?");) {
+				statement.setLong(1, orderItemsId);
+				return statement.executeUpdate();
+			} catch (Exception e) {
+				LOGGER.debug(e);
+				LOGGER.error(e.getMessage());
+			}
+			return 0;
+		}
+
+	}
+
+
 
