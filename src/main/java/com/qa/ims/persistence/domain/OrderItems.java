@@ -10,7 +10,9 @@ public class OrderItems {
 	private int itemQuantity; 
 	private double orderCost;
 	
-	public OrderItems(int itemQuantity, double orderCost) {
+	public OrderItems(Long fkitemsId, Long fkorderId, int itemQuantity, double orderCost) {
+		this.setFkItemsId(fkitemsId);
+		this.setFkOrderId(fkorderId);
 		this.setItemQuantity(itemQuantity);
 		this.setOrderCost(orderCost);
 	}
