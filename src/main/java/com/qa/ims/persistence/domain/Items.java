@@ -7,18 +7,18 @@ public class Items {
 	
 	private Long id;
 	private String itemsName;
-	private Long price;
+	private Double price;
 	
 //Default Constructor
 	
 
-	public Items(Long id, String itemsName, Long price) {
+	public Items(Long id, String itemsName, Double price) {
 	super();
 	this.id = id;
 	this.itemsName = itemsName;
 	this.price = price;
 }
-	public Items(String itemsName, Long price) {
+	public Items(String itemsName, Double price) {
 	super();
 	this.itemsName = itemsName;
 	this.price = price;
@@ -43,11 +43,11 @@ public class Items {
 		this.itemsName = itemsName;
 	}
 
-	public Long getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(Long price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 

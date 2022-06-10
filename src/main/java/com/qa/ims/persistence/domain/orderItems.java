@@ -34,15 +34,15 @@ public class orderItems {
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		orderItems.id = id;
 	}
 
 	public static int getItemQuantity() {
 		return itemQuantity;
 	}
 
-	public void setitemQuantity(int ItemQuantity) {
-		this.itemQuantity = itemQuantity;
+	public void setitemQuantity(int itemQuantity) {
+		orderItems.itemQuantity = itemQuantity;
 	}
 
 	public int getorderCost() {

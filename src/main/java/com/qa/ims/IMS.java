@@ -21,11 +21,11 @@ public class IMS {
 
 	public static final Logger LOGGER = LogManager.getLogger();
 
+	private final CrudController<?> Orders = null;
+
 	private final CustomerController customers;
 	private final ItemsController items;
 	private Utils utils;
-
-	private OrdersController orders;
 
 	private CrudController<?> orderItems;
 
@@ -42,7 +42,7 @@ public class IMS {
 
 		this.utils = new Utils();
 		final OrdersDAO ordersDAO = new OrdersDAO();
-		this.orders = new OrdersController(ordersDAO, utils);
+		new OrdersController(ordersDAO, utils);
 		
 		
 		this.utils = new Utils();
@@ -79,7 +79,7 @@ public class IMS {
 				active = this.items;
 				break;
 			case ORDERS:
-				active = this.orders;
+				active = this.Orders;
 				break;
 			case ORDER_ITEMS:
 				active = this.orderItems;
