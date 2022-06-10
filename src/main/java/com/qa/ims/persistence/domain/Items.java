@@ -7,20 +7,25 @@ public class Items {
 	
 	private Long id;
 	private String itemsName;
-	private int price;
+	private Long price;
 	
 //Default Constructor
 	
-	public Items(String itemsName, int price) {
-		this.setItemsName(itemsName);
-		this.setPrice(price);
-	}
 
-	public Items(Long id, String itemsName, int price) {
-		this.setId(id);
-		this.setItemsName(itemsName);
-		this.setPrice(price);
-	}
+	public Items(Long id, String itemsName, Long price) {
+	super();
+	this.id = id;
+	this.itemsName = itemsName;
+	this.price = price;
+}
+	public Items(String itemsName, Long price) {
+	super();
+	this.itemsName = itemsName;
+	this.price = price;
+}
+	public Items() {
+	super();
+}
 	//getters and setters
 	public Long getId() {
 		return id;
@@ -38,11 +43,11 @@ public class Items {
 		this.itemsName = itemsName;
 	}
 
-	public int getPrice() {
+	public Long getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(Long price) {
 		this.price = price;
 	}
 
@@ -67,6 +72,8 @@ public class Items {
 		Items other = (Items) obj;
 		return Objects.equals(id, other.id) && Objects.equals(itemsName, other.itemsName) && price == other.price;
 	}
+
+	
 
 	
 	

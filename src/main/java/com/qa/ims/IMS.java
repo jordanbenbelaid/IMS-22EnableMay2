@@ -36,8 +36,8 @@ public class IMS {
 		
 		
 		this.utils = new Utils();
-		final ItemsDAO itemDAO = new ItemsDAO();
-		this.items = new ItemsController(itemDAO, utils);
+		final ItemsDAO itemsDAO = new ItemsDAO();
+		this.items = new ItemsController(itemsDAO, utils);
 		
 
 		this.utils = new Utils();
