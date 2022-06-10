@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -12,16 +13,14 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.qa.ims.controller.OrderController;
+
 import com.qa.ims.controller.OrderItemsController;
-import com.qa.ims.persistence.dao.OrderDAO;
 import com.qa.ims.persistence.dao.OrderItemsDAO;
-import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.persistence.domain.OrderItems;
 import com.qa.ims.utils.Utils;
 
 @RunWith(MockitoJUnitRunner.class)
-public class OrderItemController {
+public class OrderItemControllerTest {
 
 	@Mock
 	private Utils utils;
@@ -34,8 +33,8 @@ public class OrderItemController {
 
 	@Test
 	public void testCreate() {
-		final Long fkItemsId = (long) 1;
-		final Long fkOrderId = (long) 1;
+		final Long fkItemsId = (long) 2;
+		final Long fkOrderId = (long) 2;
 		final Long itemQuantity = (long) 1;
 		
 		final OrderItems created = new OrderItems(fkOrderId, fkItemsId, itemQuantity);
@@ -73,9 +72,13 @@ public class OrderItemController {
 
 		assertEquals(updated, this.controller.update());
 
-		Mockito.verify(this.utils, Mockito.times(4)).getLong();
+		Mockito.verify(this.utils, Mockito.times(3)).getLong();
 		Mockito.verify(this.dao, Mockito.times(1)).update(updated);
 	}
+	
+  
+	
+	
 
 	@Test
 	public void testDelete() {
