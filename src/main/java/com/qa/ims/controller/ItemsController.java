@@ -1,5 +1,6 @@
 package com.qa.ims.controller;
 import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -77,6 +78,7 @@ public class ItemsController implements CrudController<Items> {
 		Long id = utils.getLong();
 		return itemsDAO.delete(id);
 	}
+
 
 }
 

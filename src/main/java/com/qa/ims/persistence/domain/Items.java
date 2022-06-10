@@ -4,10 +4,13 @@ import java.util.Objects;
 
 public class Items {
 //Attributes
+	
 	private Long id;
 	private String itemsName;
 	private int price;
+	
 //Default Constructor
+	
 	public Items(String itemsName, int price) {
 		this.setItemsName(itemsName);
 		this.setPrice(price);
@@ -65,6 +68,7 @@ public class Items {
 		return Objects.equals(id, other.id) && Objects.equals(itemsName, other.itemsName) && price == other.price;
 	}
 
+	
 	
 	
 	

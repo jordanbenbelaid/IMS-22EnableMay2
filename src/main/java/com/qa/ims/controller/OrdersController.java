@@ -60,8 +60,8 @@ public class OrdersController implements CrudController<Orders> {
 		LOGGER.info("Please enter the id of the order you would like to update");
 		Long id = utils.getLong();
 		LOGGER.info("Please enter an order id");
-		int ordersId = utils.getInt();
-		Orders orders = ordersDAO.update(new Orders(id, ordersId));
+		int orderId = utils.getInt();
+		Orders orders = ordersDAO.update(new Orders(id, orderId));
 		LOGGER.info("order Updated");
 		return orders;
 	}

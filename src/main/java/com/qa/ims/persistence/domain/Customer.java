@@ -65,6 +65,7 @@ public class Customer {
 		if (getClass() != obj.getClass())
 			return false;
 		Customer other = (Customer) obj;
+		
 		if (getFirstName() == null) {
 			if (other.getFirstName() != null)
 				return false;

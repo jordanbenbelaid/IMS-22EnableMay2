@@ -6,8 +6,8 @@ public class Orders {
 	private Long id;
 	private int OrderID;
 
-	public Orders(int OrdersID) {
-		this.setOrderID(OrdersID);
+	public Orders(int OrderID) {
+		this.setOrderID(OrderID);
 	}
 
 	public Orders(Long id, int orderID) {
