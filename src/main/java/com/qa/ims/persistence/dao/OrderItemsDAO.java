@@ -123,7 +123,7 @@ public class OrderItemsDAO implements Dao<OrderItems> {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
-		return null;
+		return orderItems;
 	}
 		/**
 		 * Deletes an item in the database
