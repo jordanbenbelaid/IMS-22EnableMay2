@@ -3,42 +3,69 @@ package com.qa.ims.persistence.domain;
 import java.util.Objects;
 
 public class Orders {
-	private Long id;
-	private int OrderID;
-
-	public Orders(int OrderID) {
-		this.setOrderID(OrderID);
+	private Long orderID;
+	private Customer customer;
+	private Long totalCost;
+	
+	public Customer getCustomerID() {
+		return customer;
+	}
+	
+	public Orders(Long orderID, Customer customer) {
+		this.orderID = orderID;
+		this.customer = customer;
+	}
+	
+	public Orders(Long orderID, Customer customer, Long totalCost) {
+		this.orderID = orderID;
+		this.customer = customer;
+		this.totalCost = totalCost;
+	}
+	public Orders(Customer customer) {
+		this.customer = customer;
 	}
 
-	public Orders(Long id, int orderID) {
-		this.setId(id);
-		this.setOrderID(OrderID);
+	public Long getTotalCost() {
+		return totalCost;
+	}
+	public void setCost(Long cost) {
+		this.totalCost = cost;
 	}
 
-	public Long getId() {
-		return id;
+	public Orders() {
+		// TODO Auto-generated constructor stub
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public Long getOrderID() {
+		return orderID;
 	}
 
-	public int getOrderID() {
-		return OrderID;
+
+
+	public void setOrderId(Long orderID) {
+		this.orderID = orderID;
 	}
 
-	public void setOrderID(int orderID) {
-		this.OrderID = orderID;
+
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	@Override
 	public String toString() {
-		return "id:" + id + " orderID:" + OrderID;
+		return "Orders [orderID=" + orderID + ", customer=" + customer + ", totalCost= £" + totalCost + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(OrderID, id);
+		return Objects.hash(totalCost, customer, orderID);
 	}
 
 	@Override
@@ -50,7 +77,13 @@ public class Orders {
 		if (getClass() != obj.getClass())
 			return false;
 		Orders other = (Orders) obj;
-		return OrderID == other.OrderID && Objects.equals(id, other.id);
+		return Objects.equals(totalCost, other.totalCost) && Objects.equals(customer, other.customer)
+				&& Objects.equals(orderID, other.orderID);
 	}
 
+
+
+	
+	
+	
 }

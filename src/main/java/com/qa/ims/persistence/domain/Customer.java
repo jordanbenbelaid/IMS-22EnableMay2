@@ -17,6 +17,14 @@ public class Customer {
 		this.setSurname(surname);
 	}
 
+	public Customer(String customersId) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Customer() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -65,7 +73,6 @@ public class Customer {
 		if (getClass() != obj.getClass())
 			return false;
 		Customer other = (Customer) obj;
-		
 		if (getFirstName() == null) {
 			if (other.getFirstName() != null)
 				return false;
