@@ -3,54 +3,58 @@ package com.qa.ims.persistence.domain;
 import java.util.Objects;
 
 public class Items {
-//Attributes
-	private Long id;
-	private String itemsName;
-	private int price;
-//Default Constructor
-	public Items(String itemsName, int price) {
-		this.setItemsName(itemsName);
-		this.setPrice(price);
+	
+	private Long itemsId;
+	private double value;
+	private String itemName;
+	
+	public Items(double value, String itemName) {
+		this.setValue(value);
+		this.setItemName(itemName);
+	}
+	
+	public Items (Long itemsId, double value, String itemName) {
+		this.setItemsId(itemsId);
+		this.setValue(value);
+		this.setItemName(itemName);
 	}
 
-	public Items(Long id, String itemsName, int price) {
-		this.setId(id);
-		this.setItemsName(itemsName);
-		this.setPrice(price);
-	}
-	//getters and setters
-	public Long getId() {
-		return id;
+	public Items() {
+		// TODO Auto-generated constructor stub
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public Long getItemsId() {
+		return itemsId;
 	}
 
-	public String getItemsName() {
-		return itemsName;
+	public void setItemsId(Long itemsId) {
+		this.itemsId = itemsId;
 	}
 
-	public void setItemsName(String itemsName) {
-		this.itemsName = itemsName;
+	public double getValue() {
+		return value;
 	}
 
-	public int getPrice() {
-		return price;
+	public void setValue(double value) {
+		this.value = value;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+	public String getItemName() {
+		return itemName;
 	}
 
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+	
 	@Override
 	public String toString() {
-		return "id:" + id + " items name:" + itemsName + " price:" + price;
+		return "id:" + itemsId + " value : £" + value + " item name:" + itemName;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, itemsName, price);
+		return Objects.hash(itemName, itemsId, value);
 	}
 
 	@Override
@@ -62,11 +66,12 @@ public class Items {
 		if (getClass() != obj.getClass())
 			return false;
 		Items other = (Items) obj;
-		return Objects.equals(id, other.id) && Objects.equals(itemsName, other.itemsName) && price == other.price;
+		return Objects.equals(itemName, other.itemName) && Objects.equals(itemsId, other.itemsId)
+				&& Double.doubleToLongBits(value) == Double.doubleToLongBits(other.value);
 	}
 
 	
 	
 	
-
+	
 }

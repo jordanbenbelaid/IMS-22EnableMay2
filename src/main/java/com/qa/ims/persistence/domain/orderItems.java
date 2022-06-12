@@ -3,69 +3,57 @@ package com.qa.ims.persistence.domain;
 import java.util.Objects;
 
 public class orderItems {
-	private static Long id;
-	private static int itemQuantity;
-	private int orderCost;
+	private Long orderItemsID;
+	private Items items;
+	private Orders orders;
+	private Long itemQuantity;
 	
-
-	public orderItems(int itemQuantity, int orderCost) {
+	
+	public orderItems(Items items, Orders orders, Long itemQuantity) {
+		this.setItems(items);
+		this.setOrders(orders);
 		this.setItemQuantity(itemQuantity);
-		this.setOrderCost(orderCost);
-	}
-
-	private void setItemQuantity(int itemQuantity2) {
-		// TODO Auto-generated method stub
 		
 	}
-
-	private void setOrderCost(int orderCost2) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public orderItems(Long id, int itemQuantity, int orderCost) {
-		this.setId(id);
+	public orderItems(Long orderItemsID, Items items, Orders orders, Long itemQuantity) {
+		this.setOrderItemsID(orderItemsID);
+		this.setItems(items);
+		this.setOrders(orders);
 		this.setItemQuantity(itemQuantity);
-		this.setOrderCost(orderCost);
 	}
-
-	public static Long getId() {
-		return id;
+	public Long getOrderItemsID() {
+		return orderItemsID;
 	}
-
-	public void setId(Long id) {
-		this.id = id;
+	public void setOrderItemsID(Long orderItemsID) {
+		this.orderItemsID = orderItemsID;
 	}
-
-	public static int getItemQuantity() {
+	public Items getItems() {
+		return items;
+	}
+	public void setItems(Items items) {
+		this.items = items;
+	}
+	public Orders getOrders() {
+		return orders;
+	}
+	public void setOrders(Orders orders) {
+		this.orders = orders;
+	}
+	public Long getItemQuantity() {
 		return itemQuantity;
 	}
-
-	public void setitemQuantity(int ItemQuantity) {
+	public void setItemQuantity(Long ItemQuantity) {
 		this.itemQuantity = itemQuantity;
 	}
-
-	public int getorderCost() {
-		return orderCost;
-	}
-
-	public void setorderCost(int orderCost) {
-		this.orderCost = orderCost;
-	}
-
 	@Override
 	public String toString() {
-		return "id:" + id + " item quantity:" + itemQuantity + " order Cost:" + orderCost;
+		return "orderItems [orderItemsID=" + orderItemsID+ ", items=" + items + ", orders=" + orders + ", itemQuantity="
+				+ itemQuantity + "]";
 	}
-
-	
-
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(orderCost);
+		return Objects.hash(itemQuantity, items, orderItemsID, orders);
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -75,14 +63,15 @@ public class orderItems {
 		if (getClass() != obj.getClass())
 			return false;
 		orderItems other = (orderItems) obj;
-		return orderCost == other.orderCost;
+		return Objects.equals(itemQuantity, other.itemQuantity) && Objects.equals(items, other.items)
+				&& Objects.equals(orderItemsID, other.orderItemsID) && Objects.equals(orders, other.orders);
 	}
-
-	public static int getOrderCost() {
+	public long getOrderID() {
 		// TODO Auto-generated method stub
-		return 0;
+		return (Long) null;
 	}
 
-
+	
+	
 	
 }

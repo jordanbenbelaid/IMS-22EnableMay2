@@ -1,18 +1,15 @@
 package com.qa.ims.controller;
+
 import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.dao.ItemsDAO;
 import com.qa.ims.persistence.domain.Items;
 import com.qa.ims.utils.Utils;
-/**
- * Takes in customer details for CRUD functionality
- * @param <ItemsDAO>
- *
- */
-public class ItemsController implements CrudController<Items> {
 
+public class ItemsController implements CrudController<Items>{
 	public static final Logger LOGGER = LogManager.getLogger();
 
 	private ItemsDAO itemsDAO;
@@ -25,58 +22,56 @@ public class ItemsController implements CrudController<Items> {
 	}
 
 	/**
-	 * Reads all customers to the logger
+	 * Reads all Items to the logger
 	 */
 	@Override
 	public List<Items> readAll() {
 		List<Items> items = itemsDAO.readAll();
-		for (Items i : items) {
-			LOGGER.info(i);
+		for (Items item : items) {
+			LOGGER.info(item);
 		}
 		return items;
 	}
 
 	/**
-	 * Creates a customer by taking in user input
+	 * Creates a Items by taking in user input
 	 */
 	@Override
 	public Items create() {
+		LOGGER.info("Please enter an item value (XX.XX)");
+		double value = utils.getDouble();
 		LOGGER.info("Please enter an item name");
-		String itemsName = utils.getString();
-		LOGGER.info("Please enter a price");
-		int price = utils.getInt();
-		Items items = itemsDAO.create(new Items(itemsName, price));
-		LOGGER.info("item created");
+		String itemName = utils.getString();
+		Items items = itemsDAO.create(new Items(value, itemName));
+		LOGGER.info("Item created");
 		return items;
 	}
 
 	/**
-	 * Updates an existing customer by taking in user input
+	 * Updates an existing Items by taking in user input
 	 */
 	@Override
 	public Items update() {
 		LOGGER.info("Please enter the id of the item you would like to update");
-		Long id = utils.getLong();
+		Long itemsId = utils.getLong();
+		LOGGER.info("Please enter a value (XX.XX)");
+		double value = utils.getDouble();
 		LOGGER.info("Please enter an item name");
-		String itemsName = utils.getString();
-		LOGGER.info("Please enter a price");
-		int price = utils.getInt();
-		Items items = itemsDAO.update(new Items(id, itemsName, price));
-		LOGGER.info("item Updated");
+		String itemName = utils.getString();
+		Items items = itemsDAO.update(new Items(itemsId, value, itemName));
+		LOGGER.info("Items Updated");
 		return items;
 	}
 
 	/**
-	 * Deletes an existing customer by the id of the customer
+	 * Deletes an existing Items by the id of the Items
 	 * 
 	 * @return
 	 */
 	@Override
 	public int delete() {
 		LOGGER.info("Please enter the id of the item you would like to delete");
-		Long id = utils.getLong();
-		return itemsDAO.delete(id);
-	}
-
+		Long itemsId = utils.getLong();
+		return itemsDAO.delete(itemsId);
 }
-
+}
