@@ -20,6 +20,10 @@ MySQL was downloaded to implement code for the project. This then had to be link
 Maven installer had to be implemented within Eclipse (Java) also in order to connect and access databases for project.
 ```
 
+https://billymillsqa.atlassian.net/jira/software/projects/BILL/boards/1/roadmap?selectedIssue=BILL-13
+
+LINK FOR JIRA USER STORIES*
+
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running
